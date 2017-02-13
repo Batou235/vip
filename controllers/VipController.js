@@ -17,6 +17,9 @@ module.exports.Repertoire = 	function(request, response){
 
 module.exports.Letter = function(request,response){
   response.title = 'Répertoire des stars';
+  model.getFirstLetter(function(err,result){
+    response.letters = result;
+  });
   model.getListStars(request.params.letter,function(err,result){
     response.list = result;
     console.log(result);
