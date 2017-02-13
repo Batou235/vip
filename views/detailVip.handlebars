@@ -4,7 +4,8 @@
   {{#ifCond this.PHOTO_NUMERO '===' 1}}
     <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
     <p>Nom : {{this.VIP_NOM}} {{this.VIP_PRENOM}}</p>
-    <p>Date de naissance : {{this.VIP_NAISSANCE}}</p>
+    <p>Date de naissance : {{#formatDate this.VIP_NAISSANCE 'DD MMMM YYYY'}}{{/formatDate}}</p>
+    <p>Nationalite : {{this.NATIONALITE_NOM}}</p>
   {{/ifCond}}
 
 {{/each}}
