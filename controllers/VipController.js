@@ -7,7 +7,7 @@ module.exports.Repertoire = 	function(request, response){
    response.title = 'Répertoire des stars';
    model.getFirstLetter(function(err,result){
      response.letters = result;
-     response.render('partial/repertoireVips', response);
+     response.render('repertoireVips', response);
    }
 
 
