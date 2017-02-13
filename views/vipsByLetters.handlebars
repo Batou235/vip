@@ -1,1 +1,5 @@
-<h1>Victoire {{this.list}}</h1>
+{{> repertoireVips}}
+
+{{#each list}}
+  <h2>{{this.VIP_NOM}}</h2>
+{{/each}}
