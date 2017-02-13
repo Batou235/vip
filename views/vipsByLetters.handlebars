@@ -1,8 +1,17 @@
 {{> repertoireVipsPartial}}
+<table>
+  <tr>
+    {{#each list}}
 
-{{#each list}}
-  {{#ifCond this.PHOTO_NUMERO '===' 1 }}
-    <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
-    <h2>{{this.VIP_NOM}}</h2>
-  {{/ifCond}}
-{{/each}}
+
+        {{#ifCond this.PHOTO_NUMERO '===' 1 }}
+          <td>
+            <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
+            <a href="/repertoire/vip/{{this.VIP_NUMERO}}">{{this.VIP_NOM}}</a>
+          </td>
+        {{/ifCond}}
+
+
+    {{/each}}
+  </tr>
+</table>
