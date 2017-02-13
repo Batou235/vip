@@ -1,4 +1,10 @@
 {{> repertoireVipsPartial}}
 
 {{#each list}}
-{{/list}}
+  {{#ifCond this.PHOTO_NUMERO '===' 1}}
+    <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
+    <p>Nom : {{this.VIP_NOM}} {{this.VIP_PRENOM}}</p>
+    <p>Date de naissance : {{this.VIP_NAISSANCE}}</p>
+  {{/ifCond}}
+
+{{/each}}

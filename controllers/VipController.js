@@ -37,9 +37,10 @@ module.exports.Detail = function(request,response){
   });
   model.getListStars('',request.params.num,function(err,result){
     response.list = result;
-    console.log(result);
+    console.log(response);
     response.render('detailVip',response);
   });
+
 
 
 };
