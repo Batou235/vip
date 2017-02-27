@@ -35,4 +35,4 @@ module.exports.getListStars = function(letter,num,callback){
   });
 };
 
-//TODO 1 requete SQL pour chaque profession
+//TODO 1 requete SQL pour chaque professio
