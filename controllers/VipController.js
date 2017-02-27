@@ -22,7 +22,6 @@ module.exports.Letter = function(request,response){
   });
   model.getListStars(request.params.letter,0,function(err,result){
     response.list = result;
-    console.log(result);
     response.render('vipsByLetters',response);
   });
 
@@ -35,9 +34,16 @@ module.exports.Detail = function(request,response){
   model.getFirstLetter(function(err,result){
     response.letters = result;
   });
+
+  model.getCouturier(request.params.num,function(err,result){
+    for(var i in result){
+      couturier = true;
+    }
+  });
+
   model.getListStars('',request.params.num,function(err,result){
     response.list = result;
-    console.log(response);
+    response.list[0].couturier = true;
     response.render('detailVip',response);
   });
 
