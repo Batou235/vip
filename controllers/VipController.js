@@ -47,11 +47,13 @@ module.exports.Detail = function(request,response){
     response.render('detailVip',response);
   });
 
-    model.getMariage(function(err,result){
-    dateEvenement = result[0].DATE_EVENEMENT
-    lieuEvenement = result[0].MARIAGE_LIEU
-    mariageFin = result[0].MARIAGE_FIN
-    mariageMotifFin = result[0].MARIAGE_MOTIFFIN
+  model.getMariage(request.params.num,function(err,result){
+      dateEvenement = result[0].DATE_EVENEMENT;
+      lieuEvenement = result[0].MARIAGE_LIEU;
+      mariageFin = result[0].MARIAGE_FIN;
+      mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
+      console.log(mariageFin);
+      console.log(lieuEvenement);
   });
 
   model.getMari(function(err, result){
