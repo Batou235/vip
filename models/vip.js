@@ -35,10 +35,21 @@ module.exports.getListStars = function(letter,num,callback){
   });
 };
 
-module.exports.getCouturier = function(num,callback){
+module.exports.getDefileCouturier = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT c.vip_numero from couturier c join vip v on (c.VIP_NUMERO = v.VIP_NUMERO) WHERE v.vip_numero = " + num;
+      var sql = "SELECT d.defile_lieu, d.defile_date from couturier c join defile d on (c.vip_numero = d.vip_numero) WHERE c.vip_numero = " + num;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  });
+}
+
+module.exports.getDefileMannequin = function(num,callback){
+  db.getConnection(function(err,connexion){
+    if(!err){
+      var sql = "SELECT d.defile_lieu, d.defile_date, v.vip_prenom, v.vip_nom FROM mannequin m JOIN defiledans dd ON (dd.vip_numero = m.vip_numero) JOIN defile d ON (dd.defile_numero = d.defile_numero) JOIN couturier c ON (d.vip_numero = c.vip_numero) JOIN vip v ON (v.vip_numero = c.vip_numero) WHERE m.vip_numero = " + num;
+      console.log(sql);
       connexion.query(sql, callback);
       connexion.release();
     }
@@ -57,7 +68,6 @@ module.exports.getMariage = function(num,callback){
         }
     });
 };
-
 
 
 

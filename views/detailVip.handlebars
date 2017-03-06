@@ -8,9 +8,25 @@
         <p>Nom : {{this.VIP_PRENOM}} {{this.VIP_NOM}} </p>
         <p>Date de naissance : {{#formatDate this.VIP_NAISSANCE 'DD MMMM YYYY'}}{{/formatDate}}</p>
         <p>Nationalite : {{this.NATIONALITE_NOM}}</p>
-        {{#if couturier}}
+        {{#if this.defileCouturier}}
           <p>Profession : Couturier</p>
+          <p>Défilés :
+
+          {{#each this.defileCouturier}}
+            {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }})
+          {{/each}}</p>
+
         {{/if}}
+        {{#if this.defileMannequin}}
+          <p>Profession : Mannequin</p>
+          <p>Défilés :
+
+          {{#each this.defileMannequin}}
+            {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }}) de {{this.vip_prenom}} {{this.vip_nom}}
+          {{/each}}</p>
+        {{/if}}
+
+
         <p>Qui suis-je : {{this.VIP_TEXTE}}</p>
       {{else}}
         <td>

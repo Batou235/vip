@@ -35,17 +35,18 @@ module.exports.Detail = function(request,response){
     response.letters = result;
   });
 
-  model.getCouturier(request.params.num,function(err,result){
-    for(var i in result){
-      couturier = true;
-    }
-  });
-
   model.getListStars('',request.params.num,function(err,result){
     response.list = result;
-    response.list[0].couturier = true;
-    response.render('detailVip',response);
+
   });
+
+  model.getDefileCouturier(request.params.num,function(err,result){
+    response.list[0].defileCouturier = result;
+  });
+
+  model.getDefileMannequin(request.params.num,function(err,result) {
+    response.list[0].defileMannequin = result;
+  })
 
   model.getMariage(request.params.num,function(err, result){
     try {
@@ -56,19 +57,13 @@ module.exports.Detail = function(request,response){
       mariageFin = result[0].MARIAGE_FIN;
       mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
 
-
-
-      console.log(nom);
-      console.log(prenom);
-      console.log(mariageFin);
-      console.log(mariageMotifFin);
-      console.log(dateEvenement);
-      console.log(lieuEvenement);
     } catch (e) {
 
     } finally {
 
     }
+
+    response.render('detailVip',response);
   });
 
 
