@@ -47,12 +47,7 @@ module.exports.Detail = function(request,response){
     response.render('detailVip',response);
   });
 
-  model.getMariage(request.params.num,function(err,result){
-
-
-  });
-
-  model.getMari(request.params.num,function(err, result){
+  model.getMariage(request.params.num,function(err, result){
     try {
       nom = result[0].VIP_NOM;
       prenom = result[0].VIP_PRENOM;
