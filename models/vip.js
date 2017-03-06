@@ -39,7 +39,6 @@ module.exports.getMariage = function(num,callback){
     db.getConnection(function(err, connexion){
         if(!err){
             var sql = "SELECT * from mariage m JOIN vip v ON (v.VIP_NUMERO = m.VIP_NUMERO OR v.VIP_NUMERO = m.VIP_VIP_NUMERO) WHERE v.VIP_NUMERO = "+num+"";
-                console.log(num);
                 connexion.query(sql, callback);
                 connexion.release();
         }
@@ -59,11 +58,18 @@ module.exports.getCouturier = function(num,callback){
 module.exports.getMari = function(num,callback){
     db.getConnection(function(err, connexion){
         if(!err){
-
+            /*
             var sql1 = "SELECT VIP_VIP_NUMERO FROM mariage m WHERE VIP_NUMERO ="+num+"";
-            var sql2 = "SELECT VIP_NUMERO FROM mariage m WHERE VIP_VIP_NUMERO ="+num+"";
+            var sql2 = "SELECT VIP_NUMERO FROM mariage m WHERE VIP_VIP_NUMERO ="+num+"";*/
+
+            var sql = "SELECT m.VIP_VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN FROM mariage m JOIN vip v ON (m.VIP_VIP_NUMERO = v.VIP_NUMERO) WHERE m.VIP_NUMERO = " + num + " UNION SELECT v.VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN FROM mariage m JOIN vip v ON (v.VIP_NUMERO = m.VIP_NUMERO) WHERE m.VIP_VIP_NUMERO ="+num+"";
                 //console.log(sql1);
                 //console.log(sql2);
+
+              connexion.query(sql, callback);
+              connexion.release();
+
+              /*
                 if(connexion.query(sql1, callback)){
                     sql = sql1;
                 }
@@ -71,7 +77,7 @@ module.exports.getMari = function(num,callback){
                     sql = sql2;
                 }
                 connexion.query(sql, callback);
-                connexion.release();
+                connexion.release();*/
         }
     });
 };

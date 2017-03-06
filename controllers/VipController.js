@@ -48,19 +48,29 @@ module.exports.Detail = function(request,response){
   });
 
   model.getMariage(request.params.num,function(err,result){
-      dateEvenement = result[0].DATE_EVENEMENT;
-      lieuEvenement = result[0].MARIAGE_LIEU;
-      mariageFin = result[0].MARIAGE_FIN;
-      mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
-      console.log(mariageFin);
-      console.log(mariageMotifFin);
-      console.log(dateEvenement);
-      console.log(lieuEvenement);
+
+
   });
 
   model.getMari(request.params.num,function(err, result){
-    mari = result;
-    console.log(mari);
+    try {
+      nom = result[0].VIP_NOM;
+      prenom = result[0].VIP_PRENOM;
+      dateEvenement = result[0].DATE_EVENEMENT;
+      lieuEvenement = result[0].MARIAGE_LIEU;
+      //mariageFin = result[0].MARIAGE_FIN;
+      //mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
+      console.log(nom);
+      console.log(prenom);
+      //console.log(mariageFin);
+      //console.log(mariageMotifFin);
+      console.log(dateEvenement);
+      console.log(lieuEvenement);
+    } catch (e) {
+
+    } finally {
+
+    }
   });
 
 
