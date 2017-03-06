@@ -53,11 +53,14 @@ module.exports.Detail = function(request,response){
       mariageFin = result[0].MARIAGE_FIN;
       mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
       console.log(mariageFin);
+      console.log(mariageMotifFin);
+      console.log(dateEvenement);
       console.log(lieuEvenement);
   });
 
-  model.getMari(function(err, result){
-    response.mari = result;
+  model.getMari(request.params.num,function(err, result){
+    mari = result;
+    console.log(mari);
   });
 
 
