@@ -49,7 +49,7 @@ module.exports.getMariage = function(num,callback){
     db.getConnection(function(err, connexion){
         if(!err){
 
-            var sql = "SELECT m.VIP_VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN FROM mariage m JOIN vip v ON (m.VIP_VIP_NUMERO = v.VIP_NUMERO) WHERE m.VIP_NUMERO = " + num + " UNION SELECT v.VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN FROM mariage m JOIN vip v ON (v.VIP_NUMERO = m.VIP_NUMERO) WHERE m.VIP_VIP_NUMERO ="+num+"";
+            var sql = "SELECT m.VIP_VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN, m.MARIAGE_MOTIFFIN FROM mariage m JOIN vip v ON (m.VIP_VIP_NUMERO = v.VIP_NUMERO) WHERE m.VIP_NUMERO = " + num + " UNION SELECT v.VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN, m.MARIAGE_MOTIFFIN FROM mariage m JOIN vip v ON (v.VIP_NUMERO = m.VIP_NUMERO) WHERE m.VIP_VIP_NUMERO ="+num+"";
 
             connexion.query(sql, callback);
             connexion.release();

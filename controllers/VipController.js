@@ -53,12 +53,15 @@ module.exports.Detail = function(request,response){
       prenom = result[0].VIP_PRENOM;
       dateEvenement = result[0].DATE_EVENEMENT;
       lieuEvenement = result[0].MARIAGE_LIEU;
-      //mariageFin = result[0].MARIAGE_FIN;
-      //mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
+      mariageFin = result[0].MARIAGE_FIN;
+      mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
+
+
+
       console.log(nom);
       console.log(prenom);
-      //console.log(mariageFin);
-      //console.log(mariageMotifFin);
+      console.log(mariageFin);
+      console.log(mariageMotifFin);
       console.log(dateEvenement);
       console.log(lieuEvenement);
     } catch (e) {
