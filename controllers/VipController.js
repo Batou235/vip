@@ -48,6 +48,12 @@ module.exports.Detail = function(request,response){
     response.list[0].defileMannequin = result;
   })
 
+  model.getAlbumChanteur(request.params.num,function(err,result){
+    response.list[0].albumChanteur = result;
+    response.list[0].chanteurSpecialite = result[0].chanteur_specialite;
+    console.log(response.list[0].chanteurSpecialite);
+  })
+
   model.getMariage(request.params.num,function(err, result){
     try {
       nom = result[0].VIP_NOM;

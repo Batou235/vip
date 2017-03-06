@@ -17,6 +17,7 @@
           {{/each}}</p>
 
         {{/if}}
+
         {{#if this.defileMannequin}}
           <p>Profession : Mannequin</p>
           <p>Défilés :
@@ -24,6 +25,17 @@
           {{#each this.defileMannequin}}
             {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }}) de {{this.vip_prenom}} {{this.vip_nom}}
           {{/each}}</p>
+        {{/if}}
+
+        {{#if this.albumChanteur}}
+          <p>Profession : Chanteur</p>
+          <p>Specialité : {{this.chanteurSpecialite}}</p>
+
+          <p>Albums :
+            {{#each this.albumChanteur}}
+              {{this.album_titre}} ({{formatDate this.album_date 'MMMM YYYY' }}) produit par {{this.maisondisque_nom}}<br>
+            {{/each}}
+          </p>
         {{/if}}
 
 

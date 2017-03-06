@@ -49,6 +49,16 @@ module.exports.getDefileMannequin = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
       var sql = "SELECT d.defile_lieu, d.defile_date, v.vip_prenom, v.vip_nom FROM mannequin m JOIN defiledans dd ON (dd.vip_numero = m.vip_numero) JOIN defile d ON (dd.defile_numero = d.defile_numero) JOIN couturier c ON (d.vip_numero = c.vip_numero) JOIN vip v ON (v.vip_numero = c.vip_numero) WHERE m.vip_numero = " + num;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  });
+}
+
+module.exports.getAlbumChanteur = function(num,callback){
+  db.getConnection(function(err,connexion){
+    if(!err){
+      var sql = "SELECT c.chanteur_specialite, a.album_titre, a.album_date, m.maisondisque_nom FROM chanteur c JOIN composer co ON (co.vip_numero = c.vip_numero) JOIN album a ON (a.album_numero = co.album_numero) JOIN maisondisque m ON (m.maisondisque_numero = a.maisondisque_numero) WHERE c.vip_numero = " + num;
       console.log(sql);
       connexion.query(sql, callback);
       connexion.release();
