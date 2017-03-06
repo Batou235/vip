@@ -49,9 +49,19 @@ module.exports.Detail = function(request,response){
   })
 
   model.getAlbumChanteur(request.params.num,function(err,result){
-    response.list[0].albumChanteur = result;
-    response.list[0].chanteurSpecialite = result[0].chanteur_specialite;
-    console.log(response.list[0].chanteurSpecialite);
+    try {
+      response.list[0].albumChanteur = result;
+      response.list[0].chanteurSpecialite = result[0].chanteur_specialite;
+    } catch (e) {
+
+    } finally {
+
+    }
+
+  })
+
+  model.getFilmsActeurs(request.params.num,function(err,result) {
+    
   })
 
   model.getMariage(request.params.num,function(err, result){

@@ -13,7 +13,7 @@
           <p>Défilés :
 
           {{#each this.defileCouturier}}
-            {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }})
+            {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }})<br>
           {{/each}}</p>
 
         {{/if}}
@@ -23,7 +23,7 @@
           <p>Défilés :
 
           {{#each this.defileMannequin}}
-            {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }}) de {{this.vip_prenom}} {{this.vip_nom}}
+            {{this.defile_lieu}} ({{formatDate this.defile_date 'MMMM YYYY' }}) de {{this.vip_prenom}} {{this.vip_nom}}<br>
           {{/each}}</p>
         {{/if}}
 

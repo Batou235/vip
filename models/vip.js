@@ -59,6 +59,16 @@ module.exports.getAlbumChanteur = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
       var sql = "SELECT c.chanteur_specialite, a.album_titre, a.album_date, m.maisondisque_nom FROM chanteur c JOIN composer co ON (co.vip_numero = c.vip_numero) JOIN album a ON (a.album_numero = co.album_numero) JOIN maisondisque m ON (m.maisondisque_numero = a.maisondisque_numero) WHERE c.vip_numero = " + num;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  });
+}
+
+module.exports.getFilmsActeurs = function(num,callback){
+  db.getConnection(function(err,connexion){
+    if(!err){
+      var sql = "SELECT f.film_titre, f.film_daterealisation, v.vip_nom, v.vip_prenom, j.role_nom, a.acteur_datedebut FROM acteur a JOIN joue j ON (a.vip_numero = j.vip_numero) JOIN film f ON (f.film_numero = j.film_numero) JOIN realisateur r ON (f.vip_numero = r.vip_numero) JOIN vip v ON (v.vip_numero = r.vip_numero) WHERE a.vip_numero = " + num;
       console.log(sql);
       connexion.query(sql, callback);
       connexion.release();
