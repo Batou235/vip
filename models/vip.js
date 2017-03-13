@@ -68,12 +68,21 @@ module.exports.getAlbumChanteur = function(num,callback){
 module.exports.getFilmsActeurs = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT f.film_titre, f.film_daterealisation, v.vip_nom, v.vip_prenom, j.role_nom, a.acteur_datedebut FROM acteur a JOIN joue j ON (a.vip_numero = j.vip_numero) JOIN film f ON (f.film_numero = j.film_numero) JOIN realisateur r ON (f.vip_numero = r.vip_numero) JOIN vip v ON (v.vip_numero = r.vip_numero) WHERE a.vip_numero = " + num;
-      console.log(sql);
+      var sql = "SELECT a.acteur_datedebut, f.film_titre, j.role_nom, f.film_daterealisation, v.vip_nom, v.vip_prenom FROM acteur a LEFT OUTER JOIN joue j ON (j.vip_numero = a.vip_numero) LEFT OUTER JOIN film f ON(f.film_numero = j.film_numero) LEFT OUTER JOIN realisateur r ON (f.vip_numero = r.vip_numero) LEFT OUTER JOIN vip v ON (r.vip_numero = v.vip_numero) WHERE a.vip_numero = " + num;
       connexion.query(sql, callback);
       connexion.release();
     }
   });
+}
+
+module.exports.getFilmsRealisateurs = function(num,callback){
+  db.getConnection(function(err,connexion){
+    if(!err){
+      var sql = "SELECT f.film_titre, f.film_daterealisation FROM film f RIGHT OUTER JOIN realisateur r  ON (r.vip_numero = f.vip_numero) WHERE r.vip_numero = " + num;
+      connexion.query(sql,callback);
+      connexion.release();
+    }
+  })
 }
 
 module.exports.getMariage = function(num,callback){

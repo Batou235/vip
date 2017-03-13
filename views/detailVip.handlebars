@@ -39,6 +39,26 @@
         {{/if}}
 
 
+        {{#if this.filmsActeurs}}
+          <p>Profession : Acteur</p>
+          {{#if this.afilms}}
+            <p>Films :</p>
+            {{#each this.filmsActeurs}}
+              <p>{{this.film_titre}} {{#if this.role_nom}} dans le role de {{this.role_nom}}{{/if}} réalisé en {{formatDate this.film_daterealisation 'MMMM YYYY'}} {{#if this.vip_nom}} par {{this.vip_prenom}} {{this.vip_nom}} {{/if}}</p>
+            {{/each}}
+          {{/if}}
+        {{/if}}
+
+        {{#if this.filmsRealisateurs}}
+          <p>Profession : Réalisateur</p>
+          {{#if this.rfilms}}
+          <p>Films : </p>
+            {{#each this.filmsRealisateurs}}
+              <p>{{this.film_titre}} réalisé en {{formatDate this.film_daterealisation 'MMMM YYYY'}}</p>
+            {{/each}}
+          {{/if}}
+        {{/if}}
+
         <p>Qui suis-je : {{this.VIP_TEXTE}}</p>
       {{else}}
         <td>

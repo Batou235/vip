@@ -61,7 +61,31 @@ module.exports.Detail = function(request,response){
   })
 
   model.getFilmsActeurs(request.params.num,function(err,result) {
-    
+    response.list[0].filmsActeurs = result;
+    if(result.length > 0){
+    if(result[0].film_titre != null)
+    {
+      response.list[0].afilms = true;
+    }
+    else{
+      response.list[0].afilms = false;
+    }
+
+}
+  })
+
+  model.getFilmsRealisateurs(request.params.num,function(err,result){
+    console.log(result);
+    if (result.length > 0){
+      response.list[0].filmsRealisateurs = result;
+      if(result[0].film_titre != null){
+        response.list[0].rfilms = true;
+      }
+      else{
+        response.list[0].rfilms = false;
+      }
+    }
+
   })
 
   model.getMariage(request.params.num,function(err, result){
