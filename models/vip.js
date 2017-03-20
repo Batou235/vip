@@ -96,8 +96,26 @@ module.exports.getMariage = function(num,callback){
 
         }
     });
+}
+
+module.exports.getMariage = function(num,callback){
+    db.getConnection(function(err, connexion){
+        if(!err){
+            var sql = "SELECT m.VIP_VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN, m.MARIAGE_MOTIFFIN FROM mariage m JOIN vip v ON (m.VIP_VIP_NUMERO = v.VIP_NUMERO) WHERE m.VIP_NUMERO = " + num + " UNION SELECT v.VIP_NUMERO AS mari, v.VIP_NOM, v.VIP_PRENOM, m.DATE_EVENEMENT, m.MARIAGE_FIN, m.MARIAGE_LIEU, m.MARIAGE_FIN, m.MARIAGE_MOTIFFIN FROM mariage m JOIN vip v ON (v.VIP_NUMERO = m.VIP_NUMERO) WHERE m.VIP_VIP_NUMERO ="+num+"";
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+}
+
+module.exports.getLiaison = function(num,callback){
+    db.getConnection(function(err, connexion){
+        if(!err){
+            var sql = "SELECT l.VIP_VIP_NUMERO AS concubin, v.VIP_NOM, v.VIP_PRENOM, l.DATE_EVENEMENT, l.LIAISON_MOTIFFIN FROM liaison l JOIN vip v ON (l.VIP_VIP_NUMERO = v.VIP_NUMERO) WHERE l.VIP_NUMERO = " + num + " UNION SELECT v.VIP_NUMERO AS concubin, v.VIP_NOM, v.VIP_PRENOM, l.DATE_EVENEMENT, l.LIAISON_MOTIFFIN FROM liaison l JOIN vip v ON (v.VIP_NUMERO = l.VIP_NUMERO) WHERE l.VIP_VIP_NUMERO ="+num+"";
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
 };
-
-
 
 //TODO 1 requete SQL pour chaque professio

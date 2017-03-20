@@ -88,3 +88,12 @@ a  {
   width:auto;
   height: 128px;
 }
+
+#detailVip {
+  text-align: left;
+}
+
+#mainImageVip{
+  float : left;
+  margin-right: 15px;
+}

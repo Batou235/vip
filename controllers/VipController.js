@@ -50,7 +50,14 @@ module.exports.Detail = function(request,response){
   });
 
   model.getDefileMannequin(request.params.num,function(err,result) {
-    response.list[0].defileMannequin = result;
+    try {
+      response.list[0].defileMannequin = result;
+    } catch (e) {
+
+    } finally {
+
+    }
+
   })
 
   model.getAlbumChanteur(request.params.num,function(err,result){
@@ -108,9 +115,40 @@ module.exports.Detail = function(request,response){
 
     }
 
-    response.render('detailVip',response);
+
   });
 
+
+model.getMariage(request.params.num,function(err, result){
+    response.list[0].mariage = true;
+    try {
+      response.list[0].nomMari = result[0].VIP_NOM;
+      response.list[0].prenomMari = result[0].VIP_PRENOM;
+      response.list[0].dateEvenementMariage = result[0].DATE_EVENEMENT;
+      response.list[0].lieuEvenement = result[0].MARIAGE_LIEU;
+      response.list[0].mariageFin = result[0].MARIAGE_FIN;
+      response.list[0].mariageMotifFin = result[0].MARIAGE_MOTIFFIN;
+    } catch (e) {
+      response.list[0].mariage = false;
+    } finally {
+
+    }
+  });
+
+  model.getLiaison(request.params.num,function(err, result){
+    response.list[0].liaison = true;
+    try {
+      response.list[0].nomConcubin = result[0].VIP_NOM;
+      response.list[0].prenomConcubin = result[0].VIP_PRENOM;
+      response.list[0].dateEvenementLiaison = result[0].DATE_EVENEMENT;
+      response.list[0].liaisonMotifFin = result[0].LIAISON_MOTIFFIN;
+    } catch (e) {
+      response.list[0].liaison = false;
+    } finally {
+
+    }
+    response.render('detailVip',response);
+  });
 
 
 };
