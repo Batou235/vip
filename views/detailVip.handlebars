@@ -1,10 +1,9 @@
 {{> repertoireVipsPartial}}
 
-<table>
-  <tr>
     {{#each list}}
       {{#ifCond this.PHOTO_NUMERO '===' 1}}
-        <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
+      <div id="detailVip">
+        <p><img class="imageVip" src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
         <p>Nom : {{this.VIP_PRENOM}} {{this.VIP_NOM}} </p>
         <p>Date de naissance : {{#formatDate this.VIP_NAISSANCE 'DD MMMM YYYY'}}{{/formatDate}}</p>
         <p>Nationalite : {{this.NATIONALITE_NOM}}</p>
@@ -60,11 +59,14 @@
         {{/if}}
 
         <p>Qui suis-je : {{this.VIP_TEXTE}}</p>
+        </div>
+        <table>
+        <tr>
       {{else}}
         <td>
-          <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
+          <p><img class="imageVip" src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
         </td>
       {{/ifCond}}
     {{/each}}
-  </tr>
+</tr>
 </table>
