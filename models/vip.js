@@ -118,4 +118,13 @@ module.exports.getLiaison = function(num,callback){
     });
 };
 
-//TODO 1 requete SQL pour chaque professio
+module.exports.getListeVip = function(num,callback){
+  db.getConnection(function(err,connexion){
+    if(!err){
+      var sql = "SELECT VIP_PRENOM, VIP_NOM FROM VIP ORDER BY VIP_NOM";
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  });
+}
+
