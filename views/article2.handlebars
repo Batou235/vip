@@ -2,7 +2,10 @@
     <fieldset>
         <legend>Article</legend>
             <div id = "articleParDefaut">
-                <p>Choisissez un vip pour voir les articles le concernant</p>
+                <p>{{article.VIP_PRENOM}} {{article.VIP_NOM}}</p><br>
+                <p>{{article.ARTICLE_RESUME}}</p><br>
+                <p>[Ajouté le {{formatDate article.ARTICLE_DATE_INSERT 'DD MMMM YYYY'}}]</p><br>
+                <p>voir sa fiche</p>                                              
             </div>
     </fieldset>
 </div>

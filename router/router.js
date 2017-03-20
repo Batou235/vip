@@ -25,6 +25,7 @@ module.exports = function(app){
 
  // article
  app.get('/articles', ArticleController.Article);
+ app.get('/articles/:num', ArticleController.Article2);
 
  // tout le reste
   app.get('*', HomeController.Index);

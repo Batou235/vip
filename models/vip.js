@@ -121,10 +121,19 @@ module.exports.getLiaison = function(num,callback){
 module.exports.getListeVip = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT VIP_PRENOM, VIP_NOM FROM VIP ORDER BY VIP_NOM";
+      var sql = "SELECT VIP_NUMERO, VIP_PRENOM, VIP_NOM FROM VIP ORDER BY VIP_NOM";
       connexion.query(sql, callback);
       connexion.release();
     }
   });
 }
 
+module.exports.getArticle = function(num,callback){
+  db.getConnection(function(err,connexion){
+    if(!err){
+      var sql = "SELECT a.ARTICLE_RESUME , ARTICLE_DATE_INSERT FROM article a join apoursujet s WHERE s.VIP_NUMERO = " + num;
+      connexion.query(sql, callback);
+      connexion.release();
+    }
+  });
+}

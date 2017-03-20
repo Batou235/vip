@@ -118,7 +118,6 @@ module.exports.Detail = function(request,response){
 
   });
 
-
 model.getMariage(request.params.num,function(err, result){
     response.list[0].mariage = true;
     try {
