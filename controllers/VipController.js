@@ -41,7 +41,12 @@ module.exports.Detail = function(request,response){
   });
 
   model.getDefileCouturier(request.params.num,function(err,result){
-    response.list[0].defileCouturier = result;
+    try{
+      response.list[0].defileCouturier = result;
+    }catch(e){
+
+    }
+
   });
 
   model.getDefileMannequin(request.params.num,function(err,result) {

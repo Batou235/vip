@@ -81,3 +81,8 @@ a  {
 .traitVertical {
   border-left: 1px white solid;
 }
+
+.imageVip{
+  width:auto;
+  height: 128px;
+}

@@ -6,11 +6,10 @@
 
         {{#ifCond this.PHOTO_NUMERO '===' 1 }}
           <td>
-            <p><img src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
+            <p><img class="imageVip" src="/images/vip/{{this.PHOTO_ADRESSE}}"></p>
             <a href="/repertoire/vip/{{this.VIP_NUMERO}}">{{this.VIP_NOM}}</a>
           </td>
         {{/ifCond}}
-
 
     {{/each}}
   </tr>
