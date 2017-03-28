@@ -32,6 +32,7 @@ module.exports.Article2 = function (request, response){
   model.getArticle(request.params.num,function(err, result){
     try {
       response.article = result;
+      response.article.numVip = request.params.num;
     } catch (e) {
 
     } finally {
