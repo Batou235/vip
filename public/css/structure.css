@@ -1,4 +1,4 @@
-body {
+abody {
     font-family: "Segoe UI", "DejaVu Sans",Verdana, sans-serif;
     background-image:-webkit-linear-gradient(#9f0909, #4e0000);
     background-image:-o-linear-gradient(#9f0909, #4e0000);
@@ -98,11 +98,9 @@ a  {
   margin-right: 15px;
 }
 
-<<<<<<< HEAD
 .infobulle{
   visibility: hidden;
 }
-=======
 #article{
     float: left;
     width: 70%;
@@ -126,4 +124,3 @@ table{
 .listeVip .deuxiemeTd{
     border: 1px solid black;
 }
->>>>>>> eaf18064ba6a731f1a190842160ab4080850eca9
