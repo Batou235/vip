@@ -98,6 +98,32 @@ a  {
   margin-right: 15px;
 }
 
+<<<<<<< HEAD
 .infobulle{
   visibility: hidden;
 }
+=======
+#article{
+    float: left;
+    width: 70%;
+    text-align:left;
+    padding-left: 20px;
+}
+
+.listeVip{
+    float:right;
+    width: 15%;
+}
+.listeVip tr td{
+    text-align: center;
+    border-radius: 11px 11px 0px 0px;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+.listeVip .deuxiemeTd{
+    border: 1px solid black;
+}
+>>>>>>> eaf18064ba6a731f1a190842160ab4080850eca9

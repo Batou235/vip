@@ -2,6 +2,7 @@ var HomeController = require('./../controllers/HomeController');
 var VipController = require('./../controllers/VipController');
 var AlbumController = require('./../controllers/AlbumController');
 var TestController = require('./../controllers/TestController');
+var ArticleController = require('./../controllers/ArticleController');
 
 
 
@@ -22,8 +23,13 @@ module.exports = function(app){
  // albums
    app.get('/album', AlbumController.ListerAlbum);
 
-// tout le reste
+ // article
+ app.get('/articles', ArticleController.Article);
+ app.get('/articles/:num', ArticleController.Article2);
+
+ // tout le reste
   app.get('*', HomeController.Index);
   app.post('*', HomeController.Index);
+
 
 };

@@ -106,7 +106,6 @@ module.exports.Detail = function(request,response){
 
   })
 
-
 model.getMariage(request.params.num,function(err, result){
   try {
     response.list[0].mariage = true;

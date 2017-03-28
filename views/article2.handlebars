@@ -1,0 +1,21 @@
+<div id = "article">
+    <fieldset>
+        <legend>Article</legend>
+            <div id = "articleParDefaut">
+                <p>{{article.0.VIP_PRENOM}} {{article.0.VIP_NOM}}</p><br>
+                <p>{{article.0.ARTICLE_RESUME}}</p><br>
+                <p>[Ajouté le {{formatDate article.0.ARTICLE_DATE_INSERT 'DD MMMM YYYY'}}]</p><br>
+                <p>voir sa fiche</p>                                              
+            </div>
+    </fieldset>
+</div>
+    <table class = "listeVip">
+            <tr>
+                <td class="premierTd" bgcolor="#000000"><img src="/images/vips.png"></td>
+            </tr>
+            
+            <tr>
+                <td class="deuxiemeTd">{{#each this.vips}}<a href="/articles/{{this.VIP_NUMERO}}">{{this.VIP_PRENOM}} {{this.VIP_NOM}}</a></br>{{/each}}</td>
+            </tr>
+            
+    </table>
