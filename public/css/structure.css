@@ -1,4 +1,4 @@
-abody {
+body {
     font-family: "Segoe UI", "DejaVu Sans",Verdana, sans-serif;
     background-image:-webkit-linear-gradient(#9f0909, #4e0000);
     background-image:-o-linear-gradient(#9f0909, #4e0000);
@@ -101,6 +101,7 @@ a  {
 .infobulle{
   visibility: hidden;
 }
+
 #article{
     float: left;
     width: 70%;
