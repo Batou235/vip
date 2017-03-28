@@ -27,7 +27,7 @@ module.exports.getListStars = function(letter,num,callback){
   //console.log(letter);
   db.getConnection(function(err, connexion){
     if(!err){
-      var sql = "SELECT v.VIP_NUMERO, v.VIP_NOM, v.VIP_PRENOM, v.VIP_NAISSANCE, v.VIP_TEXTE, n.NATIONALITE_NOM, p.PHOTO_NUMERO, p.PHOTO_ADRESSE FROM vip v JOIN photo p ON (v.VIP_NUMERO = p.VIP_NUMERO) JOIN nationalite n ON(n.NATIONALITE_NUMERO = v.NATIONALITE_NUMERO) WHERE SUBSTRING(VIP_NOM,1,1) = '"+letter+"' OR v.VIP_NUMERO = "+num+"";
+      var sql = "SELECT v.VIP_NUMERO, v.VIP_NOM, v.VIP_PRENOM, v.VIP_SEXE, v.VIP_NAISSANCE, v.VIP_TEXTE, n.NATIONALITE_NOM, p.PHOTO_NUMERO, p.PHOTO_ADRESSE, p.PHOTO_SUJET, p.PHOTO_COMMENTAIRE FROM vip v JOIN photo p ON (v.VIP_NUMERO = p.VIP_NUMERO) JOIN nationalite n ON(n.NATIONALITE_NUMERO = v.NATIONALITE_NUMERO) WHERE SUBSTRING(VIP_NOM,1,1) = '"+letter+"' OR v.VIP_NUMERO = "+num+"";
       //console.log(sql);
       connexion.query(sql, callback);
       connexion.release();
@@ -48,7 +48,7 @@ module.exports.getDefileCouturier = function(num,callback){
 module.exports.getDefileMannequin = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT d.defile_lieu, d.defile_date, v.vip_prenom, v.vip_nom FROM mannequin m JOIN defiledans dd ON (dd.vip_numero = m.vip_numero) JOIN defile d ON (dd.defile_numero = d.defile_numero) JOIN couturier c ON (d.vip_numero = c.vip_numero) JOIN vip v ON (v.vip_numero = c.vip_numero) WHERE m.vip_numero = " + num;
+      var sql = "SELECT d.defile_lieu, d.defile_date, c.vip_numero as couturier,v.vip_prenom, v.vip_nom FROM mannequin m JOIN defiledans dd ON (dd.vip_numero = m.vip_numero) JOIN defile d ON (dd.defile_numero = d.defile_numero) JOIN couturier c ON (d.vip_numero = c.vip_numero) JOIN vip v ON (v.vip_numero = c.vip_numero) WHERE m.vip_numero = " + num;
       connexion.query(sql, callback);
       connexion.release();
     }
@@ -68,7 +68,7 @@ module.exports.getAlbumChanteur = function(num,callback){
 module.exports.getFilmsActeurs = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT a.acteur_datedebut, f.film_titre, j.role_nom, f.film_daterealisation, v.vip_nom, v.vip_prenom FROM acteur a LEFT OUTER JOIN joue j ON (j.vip_numero = a.vip_numero) LEFT OUTER JOIN film f ON(f.film_numero = j.film_numero) LEFT OUTER JOIN realisateur r ON (f.vip_numero = r.vip_numero) LEFT OUTER JOIN vip v ON (r.vip_numero = v.vip_numero) WHERE a.vip_numero = " + num;
+      var sql = "SELECT a.acteur_datedebut, f.film_titre, j.role_nom, f.film_daterealisation, v.vip_nom, v.vip_prenom, r.vip_numero AS rea FROM acteur a LEFT OUTER JOIN joue j ON (j.vip_numero = a.vip_numero) LEFT OUTER JOIN film f ON(f.film_numero = j.film_numero) LEFT OUTER JOIN realisateur r ON (f.vip_numero = r.vip_numero) LEFT OUTER JOIN vip v ON (r.vip_numero = v.vip_numero) WHERE a.vip_numero = " + num;
       connexion.query(sql, callback);
       connexion.release();
     }

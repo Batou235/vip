@@ -97,3 +97,7 @@ a  {
   float : left;
   margin-right: 15px;
 }
+
+.infobulle{
+  visibility: hidden;
+}
