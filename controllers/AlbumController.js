@@ -3,21 +3,24 @@ var async = require("async");
 // ////////////////////// L I S T E R     A L B U M S
 
 module.exports.ListerAlbum = 	function(request, response){
+  async.parallel([function (callback) {
 
-  model.getListeVip(request.params.num,function(err, result){
-    try {
-      response.vips = result;
-      for (i = 0; ((i < response.vips.length)); i++ ) {
-        response.vips[i].i = i % 4;
-      }
-    } catch (e) {
+    model.getListeVip(request.params.num,function(err, result){
 
-    } finally {
+      callback(null,result);
+
+   })
+
+  }],function (err,result) {
+    response.vips = result[0];
+    for (i = 0; ((i < response.vips.length)); i++ ) {
+      response.vips[i].i = i % 4;
     }
+    response.title = 'Album des stars';
+    response.render('listerAlbum', response);
+  });
 
-   response.title = 'Album des stars';
-   response.render('listerAlbum', response);
- }) ;
+
 
  }
 
@@ -53,7 +56,7 @@ module.exports.ListerAlbum2 = function(request,response) {
     response.nom = result[1][0].VIP_NOM;
     response.prenom = result[1][0].VIP_PRENOM;
 
-
+    response.title = 'Album de ' + response.prenom + ' '+ response.nom;
     response.render('listerAlbum2', response);
   });
 
