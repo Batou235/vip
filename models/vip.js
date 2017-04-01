@@ -121,7 +121,7 @@ module.exports.getLiaison = function(num,callback){
 module.exports.getListeVip = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT VIP_NUMERO, VIP_PRENOM, VIP_NOM FROM vip ORDER BY VIP_NOM";
+      var sql = "SELECT v.VIP_NUMERO, v.VIP_PRENOM, v.VIP_NOM, p.PHOTO_ADRESSE FROM vip v JOIN photo p ON (p.VIP_NUMERO = v.VIP_NUMERO) WHERE p.PHOTO_NUMERO = 1 ORDER BY VIP_NOM";
       connexion.query(sql, callback);
       connexion.release();
     }

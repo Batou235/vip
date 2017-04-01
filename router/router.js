@@ -22,6 +22,7 @@ module.exports = function(app){
 
  // albums
    app.get('/album', AlbumController.ListerAlbum);
+   app.get('/album/:num', AlbumController.ListerAlbum2);
 
  // article
  app.get('/articles', ArticleController.Article);

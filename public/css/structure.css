@@ -125,3 +125,70 @@ table{
 .listeVip .deuxiemeTd{
     border: 1px solid black;
 }
+
+#menuAlbum{
+  float:right;
+}
+
+.photoMenuAlbum{
+  width: 96px;
+  height: 128px;
+}
+
+.cellMenuAlbum{
+  width: 96px;
+  height: 128px;
+}
+
+.imgAlbum{
+  width: 96px;
+  height: 128px;
+}
+
+#tableMenuAlbum{
+  width: 384px;
+  height: 384px;
+}
+
+#boutonsMenuAlbum{
+  display: inline-block;
+
+  width: 100%;
+}
+
+#boutonsMenuAlbumPrecedent{
+  display: inline-block;
+  float: left;
+}
+
+#boutonsMenuAlbumSuivant{
+  display: inline-block;
+    float: right;
+}
+
+#AlbumPhoto{
+  display: inline-block;
+  text-align: center;
+  width: 480px;
+  float:left;
+}
+
+#conteneurAlbumPhoto{
+  text-align: center;
+  display: inline-block;
+}
+
+#ConteneurBoutonPhotoSuiv{
+  width: 96px;
+  display: inline-block;
+
+}
+
+#ConteneurBoutonPhotoPre{
+  width: 96px;
+  display: inline-block;
+}
+
+#ComPhotoAlbum{
+  width: 480px;
+}

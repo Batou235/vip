@@ -23,3 +23,26 @@
         </div>
   </div>
 </div>
+<p>{{this.nom}} {{this.prenom}}</p>
+
+
+<table id="AlbumPhoto"><tr>
+  <td id="ConteneurBoutonPhotoPre">
+    <input id="boutonPhotoPre" type="submit" value="<<">
+  </td>
+  <td id="conteneurPhotoAlbum">
+    {{#each this.photos}}
+    <div class="photoAlbum">
+      <img class="imgAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}">
+      <fieldset id="ComPhotoAlbum">
+        <legend>Commentaire</legend>
+        <p>{{this.PHOTO_COMMENTAIRE}}</p>
+      </fieldset>
+    </div>
+    {{/each}}
+  </td>
+  <td id="ConteneurBoutonPhotoSuiv">
+    <input id="boutonPhotoSuiv" type="submit" value=">>">
+  </td>
+
+</tr></table>
