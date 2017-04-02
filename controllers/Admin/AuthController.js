@@ -5,7 +5,7 @@ var crypto = require('crypto');
 module.exports.Auth = function (request,response) {
 
   if(request.session.connected){
-    response.render('admin/mainMenu',response);
+    response.render('admin/vipMenu',response);
   }else{
     response.render('admin/auth',response);
   }
@@ -29,8 +29,8 @@ module.exports.Connect = function (request,response) {
       user = result[0][i];
       if(user.LOGIN == request.body.login){
         if(user.PASSWD == crypto.createHash('sha256').update(request.body.passwd).digest('hex')){
-          request.session.connected == true;
-          response.render('admin/mainMenu',response);
+          request.session.connected = true;
+          response.render('admin/vipMenu',response);
         }
         else{
           response.error = 'Mot de passe incorrect';

@@ -10,3 +10,15 @@ module.exports.getUsers = function(callback) {
         }
     });
 };
+
+//NE FONCTIONNE PAS POUR L'INSTANT
+/*
+module.exports.addVip = function(nom, prenom, sexe, dateNaissance, nationalite, commentaire, callback) {
+    db.getConnection(function(err, connexion) {
+        if (!err) {
+            connexion.query(sql, callback);
+            connexion.release();
+        }
+    });
+};
+*/
