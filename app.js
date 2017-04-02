@@ -45,3 +45,46 @@ require('./router/router')(app);
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Serveur Node.js en attente sur le port ' + app.get('port'));
 });
+
+//Partie administration
+
+var admin = express();
+
+admin.use(bodyParser.urlencoded({extended: true}));
+admin.set('port', 9999);
+admin.set('views', path.join(__dirname, 'views'));
+
+// routes static, le routeur n'y aura pas accès
+admin.use(express.static(path.join(__dirname, '/public')));
+
+admin.use(cookieParser());
+
+admin.use(session({
+    secret: 'nC0@#1pM/-0qA1+é',
+    name: 'VipNode',
+    resave: true,
+    saveUninitialized: true
+}));
+
+/* ces lignes permettent d'utiliser directement les variables de session dans handlebars
+ UTILISATION : {{session.MaVariable}}  */
+admin.use(function(request, response, next){
+    response.locals.session = request.session;
+    next();
+});
+
+var exphbs = require('express-handlebars');
+admin.set('view engine', 'handlebars'); //nom de l'extension des fichiers
+var handlebars  = require('./helpers/handlebarsAdmin.js')(exphbs); //emplacement des helpers
+// helpers : extensions d'handlebars
+
+admin.engine('handlebars', handlebars.engine);
+
+
+// chargement du routeur
+require('./router/routerAdmin')(admin);
+
+
+http.createServer(admin).listen(admin.get('port'), function(){
+    console.log('Serveur Node.js en attente sur le port ' + admin.get('port'));
+});
