@@ -1,6 +1,91 @@
 {{#if session.connected}}
   {{> vipMenuPartial}}
-  
+  {{#if this.added}}
+    <p>Ok<p>
+  {{else}}
+    <fieldset id="adminAjoutVip">
+      <p>{{this.error}}</p>
+      <legend>Ajout VIPs</legend>
+      <form method="post" action="">
+        <table>
+          <tr>
+            <td>
+              Nom* :
+            </td>
+            <td>
+              <input type="text" name="nom">
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Prénom* :
+            </td>
+            <td>
+              <input type="text" name="prenom">
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Sexe :
+            </td>
+            <td>
+              <select name="sexe">
+                <option value="M">Masculin</option>
+                <option value="F">Féminin</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Date de naissance :
+            </td>
+            <td>
+              <input type="date" name="dateNaissance">
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Nationalité :
+            </td>
+            <td>
+              <select name="nationalite">
+                {{#each this.nats}}
+                  <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
+                {{/each}}
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Commentaire :
+            </td>
+
+            <td>
+              <input type="textarea" name="commentaire" class="textarea">
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              Date d'insertion* :
+            </td>
+            <td>
+              <input type="date" name="dateInsertion">
+            </td>
+
+          </tr>
+
+        </table>
+
+        <input type="submit" value="Envoyer">
+      </form>
+    </fieldset>
+  {{/if}}
 {{else}}
   <p>Vous n'avez pas l'autorisation d'acceder à cette page</p>
 {{/if}}

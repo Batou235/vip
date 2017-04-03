@@ -15,7 +15,7 @@ module.exports.getListStars = function(letter,num,callback){
   //console.log(letter);
   db.getConnection(function(err, connexion){
     if(!err){
-      var sql = "SELECT v.VIP_NUMERO, v.VIP_NOM, v.VIP_PRENOM, v.VIP_SEXE, v.VIP_NAISSANCE, v.VIP_TEXTE, n.NATIONALITE_NOM, p.PHOTO_NUMERO, p.PHOTO_ADRESSE, p.PHOTO_SUJET, p.PHOTO_COMMENTAIRE FROM vip v JOIN photo p ON (v.VIP_NUMERO = p.VIP_NUMERO) JOIN nationalite n ON(n.NATIONALITE_NUMERO = v.NATIONALITE_NUMERO) WHERE SUBSTRING(VIP_NOM,1,1) = '"+letter+"' OR v.VIP_NUMERO = "+num+"";
+      var sql = "SELECT v.VIP_NUMERO, v.VIP_NOM, v.VIP_PRENOM, v.VIP_SEXE, v.VIP_NAISSANCE, v.VIP_TEXTE, n.NATIONALITE_NOM, CASE WHEN p.PHOTO_NUMERO IS NULL THEN 1 ELSE p.PHOTO_NUMERO END as PHOTO_NUMERO, PHOTO_ADRESSE, p.PHOTO_SUJET, p.PHOTO_COMMENTAIRE FROM vip v LEFT OUTER JOIN photo p ON (v.VIP_NUMERO = p.VIP_NUMERO) JOIN nationalite n ON(n.NATIONALITE_NUMERO = v.NATIONALITE_NUMERO) WHERE SUBSTRING(VIP_NOM,1,1) = '"+letter+"' OR v.VIP_NUMERO = "+num+"";
       //console.log(sql);
       connexion.query(sql, callback);
       connexion.release();
@@ -109,7 +109,7 @@ module.exports.getLiaison = function(num,callback){
 module.exports.getListeVip = function(num,callback){
   db.getConnection(function(err,connexion){
     if(!err){
-      var sql = "SELECT v.VIP_NUMERO, v.VIP_PRENOM, v.VIP_NOM, p.PHOTO_ADRESSE FROM vip v JOIN photo p ON (p.VIP_NUMERO = v.VIP_NUMERO) WHERE p.PHOTO_NUMERO = 1 ORDER BY VIP_NOM";
+      var sql = "SELECT v.VIP_NUMERO, v.VIP_PRENOM, v.VIP_NOM, p.PHOTO_ADRESSE FROM vip v JOIN photo p ON (p.VIP_NUMERO = v.VIP_NUMERO) WHERE p.PHOTO_NUMERO = 1 UNION SELECT v.VIP_NUMERO, v.VIP_PRENOM, v.VIP_NOM, 'null' FROM vip v WHERE v.VIP_NUMERO NOT IN (SELECT VIP_NUMERO FROM photo) ORDER BY VIP_NOM";
       connexion.query(sql, callback);
       connexion.release();
     }
