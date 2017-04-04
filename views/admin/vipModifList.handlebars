@@ -1,0 +1,10 @@
+{{#if session.connected}}
+  {{> vipMenuPartial}}
+  <fieldset id="adminAjoutVip">
+    {{#each this.vips}}
+      <a class="nameVip" href="/admin/vip/modif/{{this.VIP_NUMERO}}">{{this.VIP_NOM}} {{this.VIP_PRENOM}}</a><br>
+    {{/each}}
+  </fieldset>
+{{else}}
+  {{> forbidden}}
+{{/if}}

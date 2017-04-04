@@ -1,19 +1,19 @@
 {{#if session.connected}}
   {{> vipMenuPartial}}
-  {{#if this.added}}
+  {{#if this.changed}}
     <p>Ok<p>
   {{else}}
     <fieldset id="adminAjoutVip">
       <p>{{this.error}}</p>
       <legend>Ajout VIPs</legend>
-      <form method="post" action="">
+      <form method="post" action="" id="vipModifForm">
         <table>
           <tr>
             <td>
               Nom* :
             </td>
             <td>
-              <input type="text" name="nom">
+              <input type="text" name="nom" value="{{this.vip.VIP_NOM}}">
             </td>
           </tr>
 
@@ -22,7 +22,7 @@
               Prénom* :
             </td>
             <td>
-              <input type="text" name="prenom">
+              <input type="text" name="prenom" value="{{this.vip.VIP_PRENOM}}">
             </td>
           </tr>
 
@@ -32,8 +32,8 @@
             </td>
             <td>
               <select name="sexe">
-                <option value="M">Masculin</option>
-                <option value="F">Féminin</option>
+                <option value="M" {{#ifCond this.vip.VIP_SEXE '===' 'M'}}selected{{/ifCond}}>Masculin</option>
+                <option value="F" {{#ifCond this.vip.VIP_SEXE '===' 'F'}}selected{{/ifCond}}>Féminin</option>
               </select>
             </td>
           </tr>
@@ -43,7 +43,7 @@
               Date de naissance :
             </td>
             <td>
-              <input type="date" name="dateNaissance">
+              <input type="date" name="dateNaissance" value="{{this.vip.VIP_NAISSANCE}}">
             </td>
           </tr>
 
@@ -54,7 +54,7 @@
             <td>
               <select name="nationalite">
                 {{#each this.nats}}
-                  <option value="{{this.NATIONALITE_NUMERO}}">{{this.NATIONALITE_NOM}}</option>
+                  <option value="{{this.NATIONALITE_NUMERO}}" {{#if this.selected}}selected{{/if}}>{{this.NATIONALITE_NOM}}</option>
                 {{/each}}
               </select>
             </td>
@@ -66,7 +66,7 @@
             </td>
 
             <td>
-              <input type="textarea" name="commentaire" class="textarea">
+              <textarea name="commentaire" class="textarea" form="vipModifForm">{{this.vip.VIP_TEXTE}}</textarea>
             </td>
           </tr>
 
@@ -75,7 +75,7 @@
               Date d'insertion* :
             </td>
             <td>
-              <input type="date" name="dateInsertion">
+              <input type="date" name="dateInsertion" value="{{this.vip.VIP_DATE_INSERTION}}">
             </td>
 
           </tr>
