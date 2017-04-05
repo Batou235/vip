@@ -20,5 +20,15 @@ module.exports = function(app){
     app.get('/admin/vip/suppr', VipAdminController.SupprList);
     app.get('/admin/vip/suppr/:num', VipAdminController.SupprBD);
 
+    app.get('/admin/photos',function (request,response) {
+      response.render('admin/photos', response);
+    })
+
+    app.get('/deco',function (request,response) {
+      request.session.connected = false;
+      request.session.login = null;
+      response.render('admin/auth', response);
+    })
+
 
 };

@@ -33,10 +33,12 @@
     {{#each this.photos}}
     <div class="photoAlbum">
       <img class="imgAlbum" src="/images/vip/{{this.PHOTO_ADRESSE}}">
-      <fieldset id="ComPhotoAlbum">
-        <legend>Commentaire</legend>
-        <p>{{this.PHOTO_COMMENTAIRE}}</p>
-      </fieldset>
+      {{#if this.PHOTO_COMMENTAIRE}}
+        <fieldset id="ComPhotoAlbum">
+          <legend>Commentaire</legend>
+          <p>{{this.PHOTO_COMMENTAIRE}}</p>
+        </fieldset>
+      {{/if}}
     </div>
     {{/each}}
   </td>

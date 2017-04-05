@@ -5,7 +5,9 @@
       <div id="detailVip">
         <p><a href="/images/vip/{{this.PHOTO_ADRESSE}}" data-lightbox="image" data-title="{{this.PHOTO_COMMENTAIRE}}"><img id="mainImageVip" class="imageVip" src="/images/vip/{{this.PHOTO_ADRESSE}}"></a></p>
         <p><b>Nom :</b> {{this.VIP_PRENOM}} {{this.VIP_NOM}} </p>
-        <p><b>Date de naissance :</b> {{#formatDate this.VIP_NAISSANCE 'DD MMMM YYYY'}}{{/formatDate}}</p>
+        {{#if this.VIP_NAISSANCE}}
+          <p><b>Date de naissance :</b> {{#formatDate this.VIP_NAISSANCE 'DD MMMM YYYY'}}{{/formatDate}}</p>
+        {{/if}}
         <p><b>Nationalite :</b> {{this.NATIONALITE_NOM}}</p>
         {{#if this.defileCouturier}}
           {{#ifCond this.VIP_SEXE '===' 'F'}}
@@ -84,7 +86,9 @@
          <p><b>Liaison(s) : </b> <a href="/repertoire/vip/{{this.numConcubin}}">{{this.prenomConcubin}} {{this.nomConcubin}}</a> ({{formatDate this.dateEvenementLiaison 'MMMM YYYY'}}) raison fin liaison : {{this.liaisonMotifFin}})
          {{/if}}
 
-        <p><b>Qui suis-je :</b> {{this.VIP_TEXTE}}</p>
+         {{#ifCond this.VIP_TEXTE '===' NULL}}
+          <p><b>Qui suis-je :</b> {{this.VIP_TEXTE}}</p>
+        {{/ifCond}}
         </div>
         <table>
         <tr>

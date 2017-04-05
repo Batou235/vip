@@ -30,6 +30,7 @@ module.exports.Connect = function (request,response) {
       if(user.LOGIN == request.body.login){
         if(user.PASSWD == crypto.createHash('sha256').update(request.body.passwd).digest('hex')){
           request.session.connected = true;
+          request.session.login = request.body.login;
           response.render('admin/vipMenu',response);
         }
         else{

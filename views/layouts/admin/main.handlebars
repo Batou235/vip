@@ -14,15 +14,21 @@
                 <div class="baniere"><img src="/images/sixvoix.png" alt="SIXVOIX l'encyclopédie des stars" /> </div>
             </div>
             <div class="menu_haut">
+              {{#if session.connected}}
+                <p id="login"> Bonjour {{session.login}}<a href="/deco"> <input type=submit value="Déconnexion"></a></p>
+              {{/if}}
               <ul>
                 <li><a href="/admin/vip">VIPS</a></li>
                 <li><a href="/admin/photos">PHOTOS</a></li>
 
               </ul>
+
             </div>
             <div id="contenu">
+
                 <br/>
                 <br/>
+
                 {{{body}}}
             </div>
             <div id="footer">
